@@ -34,7 +34,7 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/user/all");
+        const response = await axios.get(`${import.meta.env.VITE_APP_API}/api/user/all`);
         dispatch(setUsers(response.data));
       } catch (error) {
         console.error("Error fetching users:", error);

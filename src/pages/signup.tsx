@@ -11,7 +11,7 @@ function Signup() {
 
   const handleSignup = async () => {
     try {
-      await axios.post('http://localhost:5000/api/user/signup', {
+      await axios.post(`${import.meta.env.VITE_APP_API}/api/user/signup`, {
         name,
         email,
         password,

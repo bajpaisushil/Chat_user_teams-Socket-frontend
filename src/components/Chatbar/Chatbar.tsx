@@ -33,7 +33,7 @@ interface Message {
 }
 
 const Chatbar = () => {
-  const socket = socketIOClient("http://localhost:5000"); // backend URL
+  const socket = socketIOClient(`${import.meta.env.VITE_APP_API}`); // backend URL
   const currUser = useSelector((state: any) => state.users.currentUser);
   const dispatch = useDispatch();
   const activeChat = useSelector((state: any) => state.chat.activeChat);
@@ -50,7 +50,7 @@ const Chatbar = () => {
     if (selectedMessage) {
       try {
         await axios.put(
-          `http://localhost:5000/api/message/${selectedMessage?._id}/${currUser?._id}`
+          `${import.meta.env.VITE_APP_API}/api/message/${selectedMessage?._id}/${currUser?._id}`
         );
         dispatch(updateMessage({
           messageId: selectedMessage?._id,
@@ -74,7 +74,7 @@ const Chatbar = () => {
         isDeleted: false,
       };
       const response = await axios.post(
-        "http://localhost:5000/api/message/send",
+        `${import.meta.env.VITE_APP_API}/api/message/send`,
         newMessage
       );
       console.log("message send=>", response);
@@ -99,7 +99,7 @@ const Chatbar = () => {
       // Make an API request to fetch past messages between currUser and activeChat
       axios
         .get(
-          `http://localhost:5000/api/message/${currUser._id}/${activeChat._id}`
+          `${import.meta.env.VITE_APP_API}/api/message/${currUser._id}/${activeChat._id}`
         )
         .then((response) => {
           // Dispatch an action to add the fetched messages to the Redux state
