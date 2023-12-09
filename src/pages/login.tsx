@@ -1,12 +1,13 @@
 import axios from 'axios';
 import {useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useNavigate, useLocation} from 'react-router-dom';
 import { setCurrentUser } from '../redux/slices/userSlice';
 import { useDispatch } from 'react-redux';
 
 
 function Login() {
     const dispatch=useDispatch();
+    const location=useLocation();
     const [email, setEmail]=useState("");
   const [password, setPassword] = useState('');
   const nav=useNavigate();
@@ -19,6 +20,7 @@ function Login() {
       });
       console.log('Login successful', response);
       // Set the current user in Redux state
+      console.log('current url', window.location.origin);
       localStorage.setItem('currUser', JSON.stringify(response.data.user));
       dispatch(setCurrentUser(response.data.user));
       nav('/');
