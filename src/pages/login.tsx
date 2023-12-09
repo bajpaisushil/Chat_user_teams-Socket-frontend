@@ -1,13 +1,12 @@
 import axios from 'axios';
 import {useState} from 'react';
-import {Link, useNavigate, useLocation} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { setCurrentUser } from '../redux/slices/userSlice';
 import { useDispatch } from 'react-redux';
 
 
 function Login() {
     const dispatch=useDispatch();
-    const location=useLocation();
     const [email, setEmail]=useState("");
   const [password, setPassword] = useState('');
   const nav=useNavigate();
